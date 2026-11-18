@@ -1,0 +1,8 @@
+azure-iot-hub>=2.7,<3
+# azure-iot-hub imports six without declaring it (see docs/adr/0002).
+six>=1.16,<2
+azure-identity>=1.19,<2
+azure-keyvault-secrets>=4.9,<5
+azure-eventhub>=5.15,<6
+cryptography>=44,<47
+python-dotenv>=1.0,<2
