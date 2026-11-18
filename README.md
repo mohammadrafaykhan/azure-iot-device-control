@@ -65,6 +65,40 @@ JSON arguments above use Windows PowerShell 5.1 quoting (`\"`); in bash or Power
 as `python -m service`.
 Exit codes: `0` success, `1` operation failed, `2` invalid input or configuration.
 
+## Verified live
+
+Run end to end against a real F1 hub on 2026-11-18, then torn down. Output is from that
+run; filtered views of the twin are marked as excerpts.
+
+| | Result |
+|---|---|
+| Desired `telemetryIntervalMs: 2000` | device applies it and acknowledges `ac 200`, `av 2` |
+| `RunDiagnostics` / `SetSamplingRate` | `200`; the method's change is reported as device-initiated (`ac 203`) |
+| Unknown method | `404 unknown method` |
+| C2D `maintenanceScheduled` | delivered; `lastCloudMessage` recorded in the twin |
+| Desired `100` (below minimum) | rejected with `ac 400`, previous value kept |
+| Device that does not exist | `HTTP 404`, exit code `1` |
+
+<details>
+<summary>Screenshots</summary>
+
+**Twin desired property and Plug and Play acknowledgement**
+![Twin desired property applied](docs/screenshots/01-twin-desired-ack.png)
+
+**Direct methods, including an unknown method**
+![Direct methods](docs/screenshots/02-direct-methods.png)
+
+**Cloud-to-device message recorded in the twin**
+![C2D message](docs/screenshots/03-c2d-message.png)
+
+**Validation and error handling**
+![Validation and errors](docs/screenshots/04-validation-and-errors.png)
+
+**CI**
+![CI green](docs/screenshots/05-ci-green.png)
+
+</details>
+
 ## Tests and CI
 
 ```powershell
