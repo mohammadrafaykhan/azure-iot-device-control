@@ -24,5 +24,3 @@ handful of devices; fleet onboarding is the subject of a separate project.
 - No shared secrets exist for devices; compromise of one device's key affects only that device.
 - Thumbprints are registered one device at a time (`iotctl devices create`). This does not scale
   to fleets, and certificate expiry must be tracked per device.
-- **Production path:** CA-signed certificates with DPS enrollment groups (zero-touch, chain-based
-  trust, revocation by disabling the enrollment), with keys held in a TPM or secure element.

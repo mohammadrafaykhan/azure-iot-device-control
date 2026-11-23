@@ -26,6 +26,3 @@ namespace, which adds a billed resource (Event Hubs is not free) and routing con
   assignment.
 - The key itself is long-lived; anyone holding *Key Vault Secrets User* can read it. Rotate by
   regenerating the `service` policy key and redeploying.
-- **Production path:** route telemetry to a custom Event Hubs endpoint (hub authenticates with its
-  managed identity) and read it with Entra ID end to end. This is covered in the telemetry
-  routing project.
